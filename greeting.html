@@ -13,18 +13,38 @@
      <script type="text/babel">
 
         class Greeting extends React.Component {
+	
+
+		constructor() {
+			super();
+			var today = new Date().getHours();
+			if (today > 5 && today < 12) {			
+				this.state = {personalGreeting: "Good Morning"};
+			}
+			else if (today > 12 && today < 18) {			
+				this.state = {personalGreeting: "Good Afternoon"};
+			}
+			else if (today > 18 && today < 24) {			
+				this.state = {personalGreeting: "Good Evening"};
+			}
+			else {
+				this.state = {personalGreeting: "Go to Bed"};
+			}
+		}
+
          render() {
            return (
              <div>
-               <h1>Hello World!</h1>
+               <h1>{this.state.personalGreeting} {this.props.name}</h1>
              </div>
            );
          }
        }
- 
-       ReactDOM.render(
-         <Greeting />, document.getElementById('app')
-       );
+
+       		ReactDOM.render(
+        	 <Greeting name="Alison" />, document.getElementById('app')
+       		);
+	
      </script>
   </body>
 </html>
